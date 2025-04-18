@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans, Noto_Sans_Mono } from "next/font/google";
+import { Noto_Sans, Noto_Sans_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 const NotoSans = Noto_Sans({
@@ -9,6 +9,11 @@ const NotoSans = Noto_Sans({
 
 const NotoMono = Noto_Sans_Mono({
   variable: "--font-noto-mono",
+  subsets: ["latin"],
+});
+
+const InterFont = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -48,7 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${NotoSans.variable} ${NotoMono.variable} antialiased`}>
+      <body
+        className={`${NotoSans.variable} ${NotoMono.variable} ${InterFont.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
