@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Noto_Sans, Noto_Sans_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Logo } from "@/components/logo";
+
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 
 const NotoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -56,7 +64,16 @@ export default function RootLayout({
       <body
         className={`${NotoSans.variable} ${NotoMono.variable} ${InterFont.variable} antialiased`}
       >
-        {children}
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
+              <Logo />
+              <SidebarTrigger icon="menu" className="ml-auto " />
+            </header>
+            <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
+          </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );
