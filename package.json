@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && prisma migrate deploy && next build --turbopack",
+    "build": "prisma generate &&  next build --turbopack",
     "start": "next start",
-    "lint": "prisma generate && prisma migrate deploy && next lint",
+    "lint": "prisma generate &&  next lint",
     "prepare": "husky"
   },
   "dependencies": {
