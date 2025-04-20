@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Sidebar,
   SidebarContent,
@@ -6,17 +6,13 @@ import {
   SidebarHeader,
   SidebarRail,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
-import { Logo } from "./logo";
-import { Sparkles } from "./icons/Sparkles";
-import { LogOut, MoreHorizontal, Settings } from "lucide-react";
-import Image from "next/image";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
+import { Logo } from './logo';
+import { Sparkles } from './icons/Sparkles';
+import { LogOut, MoreHorizontal, Settings } from 'lucide-react';
+import Image from 'next/image';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 import {
   DropdownMenu,
@@ -24,7 +20,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -33,9 +29,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
-import { File } from "./icons/File";
-import { Zap } from "./icons/Zap";
+} from '@/components/ui/sidebar';
+import { File } from './icons/File';
+import { Zap } from './icons/Zap';
 
 // Dummy guest state (replace with your actual auth logic)
 const isGuest = true;
@@ -43,32 +39,32 @@ const isGuest = true;
 // Example navMain data (restore or import as needed)
 const navMain = [
   {
-    name: "Past",
-    url: "#",
+    name: 'Past',
+    url: '#',
     items: [
-      { name: "Chat", url: "#" },
-      { name: "Code Generation", url: "#" },
+      { name: 'Chat', url: '#' },
+      { name: 'Code Generation', url: '#' },
     ],
   },
 ];
 
 // Example user data (replace with real user data)
 const user = {
-  name: "John Doe",
-  avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+  name: 'John Doe',
+  avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader className="mt-7 mb-1.5 flex flex-row justify-between items-center">
+      <SidebarHeader className="mt-7 mb-1.5 flex flex-row items-center justify-between">
         <Logo />
         <SidebarTrigger icon="close" className="pr-2 md:hidden" />
       </SidebarHeader>
       <SidebarContent className="px-1.5">
         <ul>
-          <SidebarMenuItem key={"onGoing"}>
-            <SidebarMenuButton asChild className="bg-gray-100 ">
+          <SidebarMenuItem key={'onGoing'}>
+            <SidebarMenuButton asChild className="bg-gray-100">
               <a href="#">
                 <Zap className="size-5" />
                 <span className="text-primary">Ongoing prompt</span>
@@ -78,13 +74,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </ul>
 
         <nav className="flex flex-col gap-2">
-          {navMain.map((section) => (
+          {navMain.map(section => (
             <div key={section.name}>
-              <div className="text-xs font-semibold text-muted-foreground px-2 py-1">
+              <div className="text-muted-foreground px-2 py-1 text-xs font-semibold">
                 {section.name}
               </div>
               <ul className="flex flex-col gap-1">
-                {section.items.map((item) => (
+                {section.items.map(item => (
                   <SidebarMenuItem key={item.name}>
                     <SidebarMenuButton asChild>
                       <a href={item.url}>
@@ -102,21 +98,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter>
         <Button
           variant="outline"
-          className="w-full mb-4 flex justify-start items-center gap-2 cursor-pointer"
+          className="mb-4 flex w-full cursor-pointer items-center justify-start gap-2"
         >
           <Sparkles />
           <span>Start new chat</span>
         </Button>
         {isGuest ? (
-          <div className="rounded-xl border bg-card p-4 shadow-sm flex flex-col gap-3">
-            <div className="font-semibold text-base ">
-              Let’s create an account
+          <div className="bg-card flex flex-col gap-3 rounded-xl border p-4 shadow-sm">
+            <div className="text-base font-semibold">Let’s create an account</div>
+            <div className="text-muted-foreground mb-2 text-sm">
+              Save your chat history, share chat, and personalize your experience.
             </div>
-            <div className="text-muted-foreground text-sm  mb-2">
-              Save your chat history, share chat, and personalize your
-              experience.
-            </div>
-            <Button className="w-full mb-1" variant="default">
+            <Button className="mb-1 w-full" variant="default">
               Sign in
             </Button>
             <Button className="w-full" variant="link">
@@ -124,7 +117,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </Button>
           </div>
         ) : (
-          <div className="flex items-center justify-between w-full px-2 py-2 rounded-lg hover:bg-muted transition">
+          <div className="hover:bg-muted flex w-full items-center justify-between rounded-lg px-2 py-2 transition">
             <div className="flex items-center gap-2">
               <Image
                 src={user.avatar}
@@ -137,7 +130,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </div>
             <Popover>
               <PopoverTrigger asChild>
-                <button className="p-1 rounded hover:bg-muted">
+                <button className="hover:bg-muted rounded p-1">
                   <span className="sr-only">Open user menu</span>
                   <svg
                     width={20}
@@ -153,14 +146,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   </svg>
                 </button>
               </PopoverTrigger>
-              <PopoverContent
-                align="end"
-                className="w-48 p-2 rounded-xl shadow border bg-card"
-              >
-                <button className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-muted text-sm">
+              <PopoverContent align="end" className="bg-card w-48 rounded-xl border p-2 shadow">
+                <button className="hover:bg-muted flex w-full items-center gap-2 rounded px-3 py-2 text-sm">
                   <Settings size={16} /> Settings
                 </button>
-                <button className="flex items-center gap-2 w-full px-3 py-2 rounded hover:bg-muted text-sm text-destructive">
+                <button className="hover:bg-muted text-destructive flex w-full items-center gap-2 rounded px-3 py-2 text-sm">
                   <LogOut size={16} /> Sign out
                 </button>
               </PopoverContent>
