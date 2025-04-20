@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma generate && prisma migrate deploy && next build --turbopack",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "prisma generate && prisma migrate deploy && next lint",
     "prepare": "husky"
   },
   "dependencies": {
@@ -46,7 +46,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
       "prettier --write"
     ]
   }

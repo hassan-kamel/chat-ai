@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // experimental: {},
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,7 +12,7 @@ const nextConfig: NextConfig = {
 
   // https://randomuser.me
   images: {
-    domains: ["randomuser.me"],
+    domains: ['randomuser.me'],
   },
 };
 
