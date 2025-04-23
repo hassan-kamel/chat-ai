@@ -1,12 +1,34 @@
 import { GoogleGenAI } from '@google/genai';
+import { NextResponse } from 'next/server';
+import { z } from 'zod';
 
-export async function GET() {
+export const payloadSchema = z.object({
+  prompt: z.string().min(1).max(1000, 'Prompt must be between 1 and 1000 characters'),
+});
+
+export async function POST(request: Request) {
+  const { prompt } = await request.json();
+
+  const validatedPrompt = payloadSchema.safeParse({ prompt });
+
+  if (!validatedPrompt.success) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Validation failed',
+        errors: validatedPrompt.error.flatten(),
+        timestamp: new Date().toISOString(),
+      },
+      { status: 400 },
+    );
+  }
+
   const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_API_KEY,
   });
   const response = await ai.models.generateContentStream({
     model: 'gemini-2.0-flash',
-    contents: 'Explain how AI works in a much details words',
+    contents: prompt,
   });
 
   const stream = new ReadableStream({
