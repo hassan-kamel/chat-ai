@@ -3,7 +3,10 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 export const payloadSchema = z.object({
-  prompt: z.string().min(1).max(1000, 'Prompt must be between 1 and 1000 characters'),
+  prompt: z
+    .string()
+    .max(1000, 'Prompt must be between 1 and 1000 characters')
+    .nonempty('Prompt is required'),
 });
 
 export async function POST(request: Request) {
