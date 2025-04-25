@@ -18,10 +18,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useChatActions } from '@/store/chat';
 
 type FormSchema = z.infer<typeof payloadSchema>;
 
 export function ChatInputForm() {
+  const { setPrompt } = useChatActions();
   const form = useForm<FormSchema>({
     resolver: zodResolver(payloadSchema),
     defaultValues: {
@@ -58,6 +60,8 @@ export function ChatInputForm() {
                       //   top: document.scrollingElement.scrollHeight,
                       //   behavior: 'smooth',
                       // });
+
+                      setPrompt(e.currentTarget.value);
                     }}
                   />
                 </FormControl>
